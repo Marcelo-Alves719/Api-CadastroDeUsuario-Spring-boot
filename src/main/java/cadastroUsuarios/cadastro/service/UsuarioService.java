@@ -18,6 +18,20 @@ public class UsuarioService {
         return repository.save(usuario);
     }
 
+    public void deletar(Long id) { repository.deleteById(id);}
+
+    public Usuario atualizar(Long id, Usuario usuario) {
+
+        Usuario usuarioExistente = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        usuarioExistente.setNome(usuario.getNome());
+        usuarioExistente.setEmail(usuario.getEmail());
+
+        return repository.save(usuarioExistente);
+    }
+
+
     public List<Usuario> listar() {
         return repository.findAll();
     }

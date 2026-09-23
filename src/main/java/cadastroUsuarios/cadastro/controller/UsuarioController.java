@@ -17,6 +17,7 @@ public class UsuarioController {
     public UsuarioController(UsuarioService service) {
         this.service = service;
     }
+
     @PostMapping
     public Usuario cadastrar(@RequestBody Usuario usuario){
         return service.cadastrar(usuario);
@@ -26,6 +27,18 @@ public class UsuarioController {
     public List<Usuario> listar(){
         return service.listar();
     }
+
+    @DeleteMapping("/{id}")
+    public void deletar(@PathVariable Long id) {
+        service.deletar(id);
+    }
+
+    @PutMapping("/{id}")
+    public Usuario atualizar(@PathVariable Long id, @RequestBody Usuario usuario) {
+        return service.atualizar(id, usuario);
+    }
+
+
 
 
 }
